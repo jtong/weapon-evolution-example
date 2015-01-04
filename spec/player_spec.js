@@ -17,5 +17,13 @@ describe("player", function(){
         var lisi = new Player("李四", 100, 8);
         zhangsan.attack(lisi);
         expect(lisi.hp).toBe(90);
-    })
-})
+    });
+
+
+    it("attack string", function(){
+        var zhangsan = new Player("张三", 100, 10);
+        var lisi = new Player("李四", 100, 8);
+        var attack_string = zhangsan.attack(lisi);
+        expect(attack_string).toBe("张三攻击了李四,李四受到了10点伤害,李四剩余生命：90");
+    });
+});

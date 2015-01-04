@@ -10,6 +10,7 @@ Player.prototype.isAlive = function(){
 
 Player.prototype.attack = function(player){
     player.hp -= this.ap;
+    return this.name + "攻击了" + player.name + ","+ player.name +"受到了"+this.ap +"点伤害,"+ player.name + "剩余生命："+player.hp;
 }
 
 module.exports = Player;
