@@ -15,9 +15,8 @@ Soldier.prototype.be_attacked = function (ap) {
     return damage;
 };
 
-Soldier.prototype.attack = function (player) {
-    var damage = player.be_attacked(this.ap + this.weapon.ap, player);
-    return this.build_attack_string(player, damage);
+Soldier.prototype.getAP = function() {
+    return this.ap + this.weapon.ap;
 };
 
 Soldier.prototype._super_build_attack_with_string  = Player.prototype.build_attack_with_string;
@@ -28,6 +27,6 @@ Soldier.prototype.build_attack_with_string = function() {
 
 Soldier.prototype.role = function(){
     return "战士"
-}
+};
 
 module.exports = Soldier;

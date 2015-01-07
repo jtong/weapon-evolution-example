@@ -59,7 +59,15 @@ describe("player", function(){
             var attack_string = zhangsan.attack(lisi);
 
             expect(attack_string).toBe("战士张三用优质木棒攻击了战士李四,李四受到了10点伤害,李四剩余生命：90");
-        })
+        });
+
+        it("normal person vs soldier with armor attack string", function () {
+            var zhangsan = new Player("张三", 100, 10);
+            var lisi = new Soldier("李四", 100, 8, null, new Armor("皮甲", 2));
+            var attack_string = zhangsan.attack(lisi);
+
+            expect(attack_string).toBe("普通人张三攻击了战士李四,李四受到了8点伤害,李四剩余生命：92");
+        });
     });
 
 });
