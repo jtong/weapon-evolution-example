@@ -22,18 +22,32 @@ describe("player", function(){
     });
 
 
-    it("attack string", function(){
+    it("normal person vs normal person attack string", function(){
         var zhangsan = new Player("张三", 100, 10);
         var lisi = new Player("李四", 100, 8);
         var attack_string = zhangsan.attack(lisi);
         expect(attack_string).toBe("普通人张三攻击了普通人李四,李四受到了10点伤害,李四剩余生命：90");
     });
 
-    it("attack string with role", function(){
+    it("soldier vs normal person attack string", function () {
         var zhangsan = new Soldier("张三", 100, 10, new Weapon("优质木棒", 2));
         var lisi = new Player("李四", 100, 8);
         var attack_string = zhangsan.attack(lisi);
         expect(attack_string).toBe("战士张三用优质木棒攻击了普通人李四,李四受到了12点伤害,李四剩余生命：88");
+    });
+
+    it("soldier vs soldier attack string", function(){
+        var zhangsan = new Soldier("张三", 100, 10, new Weapon("优质木棒", 2));
+        var lisi = new Soldier("李四", 100, 8);
+        var attack_string = zhangsan.attack(lisi);
+        expect(attack_string).toBe("战士张三用优质木棒攻击了战士李四,李四受到了12点伤害,李四剩余生命：88");
+    });
+
+    it("soldier vs soldier attack string", function(){
+        var zhangsan = new Soldier("张三", 100, 10, new Weapon("优质木棒", 2));
+        var lisi = new Soldier("李四", 100, 8);
+        var attack_string = zhangsan.attack(lisi);
+        expect(attack_string).toBe("战士张三用优质木棒攻击了战士李四,李四受到了12点伤害,李四剩余生命：88");
     });
 
 });
