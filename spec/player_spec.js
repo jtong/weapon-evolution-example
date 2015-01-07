@@ -3,6 +3,7 @@ var Player = require('../src/player.js');
 var Game = require('../src/game.js');
 var Soldier = require('../src/soldier.js');
 var Weapon = require('../src/weapon');
+var Armor = require('../src/armor');
 
 describe("player", function(){
     it("spec", function(){
@@ -48,6 +49,17 @@ describe("player", function(){
         var lisi = new Soldier("李四", 100, 8);
         var attack_string = zhangsan.attack(lisi);
         expect(attack_string).toBe("战士张三用优质木棒攻击了战士李四,李四受到了12点伤害,李四剩余生命：88");
+    });
+
+
+    describe("Armor", function(){
+        it("soldier vs soldier with armor attack string", function(){
+            var zhangsan = new Soldier("张三", 100, 10, new Weapon("优质木棒",2));
+            var lisi = new Soldier("李四", 100, 8, null, new Armor("皮甲", 2));
+            var attack_string = zhangsan.attack(lisi);
+
+            expect(attack_string).toBe("战士张三用优质木棒攻击了战士李四,李四受到了10点伤害,李四剩余生命：90");
+        })
     });
 
 });

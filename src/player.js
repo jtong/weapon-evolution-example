@@ -17,10 +17,14 @@ Player.prototype.build_attack_string = function (player, damage) {
         + player.name + "受到了" + damage + "点伤害," + player.name + "剩余生命：" + player.hp;
 }
 Player.prototype.attack = function (player) {
-    player.hp -= this.ap;
+    player.be_attacked(this.ap);
     return this.build_attack_string(player, this.ap);
 }
 
+Player.prototype.be_attacked = function(ap){
+    this.hp -= ap;
+    return ap;
+}
 Player.prototype.role = function () {
     return "普通人"
 }
