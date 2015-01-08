@@ -18,7 +18,8 @@ Player.prototype.build_pre_damage_string = function(){
 
 Player.prototype.build_attack_string = function (player, attack_result) {
     return this.role() + this.name + this.build_attack_with_string() + player.role() + player.name + ","
-        + this.build_pre_damage_string(attack_result.attack_impact) + player.name + "受到了" + attack_result.damage + "点伤害," + player.name + "剩余生命：" + player.hp;
+        + this.build_pre_damage_string(attack_result.attack_impact) + player.name + "受到了" + attack_result.damage + "点伤害,"
+        + player.name + "剩余生命：" + player.hp;
 };
 
 Player.prototype.getAP = function(){
@@ -37,9 +38,22 @@ Player.prototype.attack = function (player) {
     return this.build_attack_string(player, attack_result);
 };
 
-Player.prototype.be_attacked = function(ap){
-    this.hp -= ap;
+Player.prototype.origin_damage = function(ap) {
     return ap;
+};
+
+Player.prototype.calculate_impacted_damage = function(ap, attack_impact){
+    var damage = this.origin_damage(ap);
+    if(attack_impact && attack_impact.is_impact){
+        return attack_impact.impact(damage);
+    }
+    return damage;
+}
+
+Player.prototype.be_attacked = function (ap, attack_impact) {
+    var damage = this.calculate_impacted_damage(ap, attack_impact);
+    this.hp -= damage;
+    return damage;
 };
 
 Player.prototype.role = function () {

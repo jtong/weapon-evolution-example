@@ -10,18 +10,8 @@ function Soldier(name, hp, ap, weapon, armor){
 Soldier.prototype = Object.create(Player.prototype);
 Soldier.prototype.constructor = Soldier;
 
-Soldier.prototype.calculate_damage = function(ap, attack_impact){
-    var damage = ap - this.armor.dp;
-    if(attack_impact && attack_impact.is_impact){
-        return attack_impact.impact(damage);
-    }
-    return damage;
-}
-
-Soldier.prototype.be_attacked = function (ap, attack_impact) {
-    var damage = this.calculate_damage(ap, attack_impact);
-    this.hp -= damage;
-    return damage;
+Soldier.prototype.origin_damage = function(ap) {
+    return ap - this.armor.dp;
 };
 
 Soldier.prototype.getAP = function() {
