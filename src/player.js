@@ -16,9 +16,18 @@ Player.prototype.build_pre_damage_string = function(){
     return "";
 };
 
+Player.prototype.build_after_damage_string = function(attack_impact){
+    if(attack_impact && attack_impact.is_impact_after_damage){
+        return attack_impact.build_effect_string(this.name) + ",";
+    }
+    return "";
+};
+
 Player.prototype.build_attack_string = function (player, attack_result) {
     return this.role() + this.name + this.build_attack_with_string() + player.role() + player.name + ","
-        + this.build_pre_damage_string(attack_result.attack_impact) + player.name + "受到了" + attack_result.damage + "点伤害,"
+        + this.build_pre_damage_string(attack_result.attack_impact)
+        + player.name + "受到了" + attack_result.damage + "点伤害,"
+        + player.build_after_damage_string(attack_result.attack_impact)
         + player.name + "剩余生命：" + player.hp;
 };
 
@@ -44,7 +53,7 @@ Player.prototype.origin_damage = function(ap) {
 
 Player.prototype.calculate_impacted_damage = function(ap, attack_impact){
     var damage = this.origin_damage(ap);
-    if(attack_impact && attack_impact.is_impact){
+    if(attack_impact && attack_impact.is_impact_before_damage){
         return attack_impact.impact(damage);
     }
     return damage;

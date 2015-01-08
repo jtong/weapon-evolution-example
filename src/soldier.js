@@ -34,7 +34,7 @@ Soldier.prototype.build_attack_with_string = function() {
 };
 
 Soldier.prototype.build_pre_damage_string = function(attack_impact){
-    if(attack_impact && attack_impact.is_impact){
+    if(attack_impact && attack_impact.is_impact_before_damage){
         return attack_impact.build_effect_string(this.name) + ",";
     }
     return "";

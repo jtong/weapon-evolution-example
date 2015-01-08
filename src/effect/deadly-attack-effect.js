@@ -4,7 +4,7 @@ function DeadlyAttackEffect(){
 
 DeadlyAttackEffect.prototype.trigger = function() {
     return {
-        is_impact: true,
+        is_impact_before_damage: true,
         impact: function (damage) {
             return damage * 3;
 
