@@ -18,9 +18,9 @@ Soldier.prototype.getAP = function() {
     return this.ap + this.weapon.ap;
 };
 
-Soldier.prototype.do_attack = function(player){
+Soldier.prototype.do_attack = function(defencer){
     var attack_impact = this.weapon.effect.trigger();
-    var damage = player.be_attacked(this.getAP(), attack_impact);
+    var damage = defencer.be_attacked(this.getAP(), attack_impact);
     return  {
         attack_impact: attack_impact,
         damage: damage

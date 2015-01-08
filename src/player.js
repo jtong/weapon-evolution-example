@@ -23,28 +23,28 @@ Player.prototype.build_after_damage_string = function(attack_impact){
     return "";
 };
 
-Player.prototype.build_attack_string = function (player, attack_result) {
-    return this.role() + this.name + this.build_attack_with_string() + player.role() + player.name + ","
+Player.prototype.build_attack_string = function (defencer, attack_result) {
+    return this.role() + this.name + this.build_attack_with_string() + defencer.role() + defencer.name + ","
         + this.build_pre_damage_string(attack_result.attack_impact)
-        + player.name + "受到了" + attack_result.damage + "点伤害,"
-        + player.build_after_damage_string(attack_result.attack_impact)
-        + player.name + "剩余生命：" + player.hp;
+        + defencer.name + "受到了" + attack_result.damage + "点伤害,"
+        + defencer.build_after_damage_string(attack_result.attack_impact)
+        + defencer.name + "剩余生命：" + defencer.hp;
 };
 
 Player.prototype.getAP = function(){
     return this.ap;
 };
 
-Player.prototype.do_attack = function(player) {
-    var damage = player.be_attacked(this.getAP());
+Player.prototype.do_attack = function(defencer) {
+    var damage = defencer.be_attacked(this.getAP());
     return  {
         damage: damage
     };
 }
 
-Player.prototype.attack = function (player) {
-    var attack_result = this.do_attack(player);
-    return this.build_attack_string(player, attack_result);
+Player.prototype.attack = function (defencer) {
+    var attack_result = this.do_attack(defencer);
+    return this.build_attack_string(defencer, attack_result);
 };
 
 Player.prototype.origin_damage = function(ap) {
