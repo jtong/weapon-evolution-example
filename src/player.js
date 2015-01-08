@@ -12,18 +12,18 @@ Player.prototype.build_attack_with_string = function() {
     return "攻击了";
 };
 
-Player.prototype.build_attack_string = function (player, damage) {
-    return this.role() + this.name + this.build_attack_with_string() + player.role() + player.name + ","
-        + player.name + "受到了" + damage + "点伤害," + player.name + "剩余生命：" + player.hp;
+Player.prototype.build_attack_string = function (defencer, damage) {
+    return this.role() + this.name + this.build_attack_with_string() + defencer.role() + defencer.name + ","
+        + defencer.name + "受到了" + damage + "点伤害," + defencer.name + "剩余生命：" + defencer.hp;
 };
 
 Player.prototype.getAP = function(){
     return this.ap;
 };
 
-Player.prototype.attack = function (player) {
-    var damage = player.be_attacked(this.getAP());
-    return this.build_attack_string(player, damage);
+Player.prototype.attack = function (defencer) {
+    var damage = defencer.be_attacked(this.getAP());
+    return this.build_attack_string(defencer, damage);
 };
 
 Player.prototype.be_attacked = function(ap){
