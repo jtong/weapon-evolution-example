@@ -57,7 +57,7 @@ describe("Effect", function(){
         describe("state impact string", function(){
             var lisi = new Soldier("李四", 100, 10, new Weapon("优质木棒",2),null, new PoisonState(2));
             var zhangsan = new Soldier("张三", 100, 8);
-            var attack_string = zhangsan.attack(zhangsan);
+            var attack_string = lisi.attack(zhangsan);
             expect(attack_string).toBe("李四受到2点毒性伤害, 李四剩余生命：98\n战士李四用优质木棒攻击了战士张三,张三受到了12点伤害,张三剩余生命：88");
             
         });
